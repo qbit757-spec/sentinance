@@ -26,7 +26,7 @@ services:
     container_name: finanzas_backend
     restart: always
     ports:
-      - "8000:8000"
+      - "8004:8000"
     environment:
       - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-finanzas_user}:${POSTGRES_PASSWORD:-finanzas_pass123}@db:5432/${POSTGRES_DB:-finanzas_db}
       - SECRET_KEY=${SECRET_KEY:-super-secret-key-change-in-production-12345}
