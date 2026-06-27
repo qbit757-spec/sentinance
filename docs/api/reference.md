@@ -139,3 +139,36 @@ Esta documentación describe todos los endpoints disponibles en el backend de Fi
 - `GET /api/v1/loans`
 - `POST /api/v1/loans` (Crea préstamo, deduciendo saldo con un `Expense` automático).
 - `POST /api/v1/loans/{loan_id}/collect` (Registra cobro total o cuota parcial, sumando saldo con un `Income` automático).
+
+---
+
+## 🏷️ Categorías (`/api/v1/categories`)
+
+- `GET /api/v1/categories` (Obtener lista de categorías del usuario).
+- `POST /api/v1/categories` (Crear nueva categoría. Parámetros: `name`, `type` ["Ingreso" o "Gasto"]).
+- `PUT /api/v1/categories/{id}` (Actualizar detalles).
+- `DELETE /api/v1/categories/{id}` (Eliminar categoría).
+
+---
+
+## 🎯 Metas y Colaboraciones (`/api/v1/goals`)
+
+### 1. Gestión de Metas
+- `GET /api/v1/goals` (Listar tus metas de ahorro y metas compartidas).
+- `POST /api/v1/goals` (Crear una meta de ahorro. Parámetros: `name`, `target_amount`, `target_date`, `priority` ["Baja"|"Media"|"Alta"]).
+- `PUT /api/v1/goals/{id}` (Actualizar meta).
+- `DELETE /api/v1/goals/{id}` (Eliminar meta).
+
+### 2. Invitaciones a Colaborar
+- `POST /api/v1/goals/{goal_id}/invite` (Enviar invitación a otro usuario mediante su `receiver_username` para ahorrar juntos).
+- `GET /api/v1/goals/invitations/received` (Listar todas tus invitaciones pendientes recibidas).
+- `POST /api/v1/goals/invitations/{invitation_id}/respond` (Aceptar o rechazar una invitación. Request Body: `{"accept": true}` o `{"accept": false}`).
+
+---
+
+## ⚙️ Rutas de Actualización y Eliminación Comunes
+Todos los recursos financieros principales (`accounts`, `incomes`, `expenses`, `debts`, `loans`) soportan las siguientes operaciones estándar:
+- `GET /api/v1/{recurso}/{id}` (Obtener detalle por ID).
+- `PUT /api/v1/{recurso}/{id}` (Modificación parcial de campos).
+- `DELETE /api/v1/{recurso}/{id}` (Eliminación lógica / Soft delete del recurso).
+
