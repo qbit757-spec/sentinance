@@ -1,6 +1,6 @@
 import structlog
 from fastapi import FastAPI
-from slowapi.errors import LimitExceeded
+from slowapi.errors import RateLimitExceeded
 from slowapi.extension import _rate_limit_exceeded_handler
 from app.core.config import settings
 from app.core.logging import setup_logging
@@ -20,7 +20,7 @@ app = FastAPI(
 
 # SlowAPI Rate Limiter mapping
 app.state.limiter = limiter
-app.add_exception_handler(LimitExceeded, _rate_limit_exceeded_handler)
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # Setup middleware & event handlers
 setup_middleware(app)
